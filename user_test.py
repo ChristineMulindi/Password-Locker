@@ -114,14 +114,14 @@ class TestUser(unittest.TestCase):
 
     def test_delete_credential(self):
             '''
-            test_delete_credential to test if we can remove a crede from our contact list
+            test_delete_credential to test if we can remove a credentials account from our credentials list
             '''
-            self.new_contact.save_contact()
-            test_contact = Contact("Test","user","0712345678","test@user.com") # new contact
-            test_contact.save_contact()
+            self.new_credential.save_credential()
+            test_credential = Credentials("Twitter","Musinzi","0734")
+            test_credential.save_credential()
 
-            self.new_contact.delete_contact()# Deleting a contact object
-            self.assertEqual(len(Contact.contact_list),1)   
+            self.new_credential.delete_credential()
+            self.assertEqual(len(Credentials.credentials_list),1)   
 
 if __name__ == '__main__':
     unittest.main()
