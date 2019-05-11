@@ -46,6 +46,14 @@ def save_credentials(credential):
     credential.save_credential()
 
 
+def display_credentials():
+    '''
+    Function that returns all the saved contacts
+    '''
+    return Credentials.display_credentials()
+
+
+
 def main():
     print("Hello Welcome to Password Locker. What is your name?")
     user_name = input()
