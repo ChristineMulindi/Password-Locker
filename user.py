@@ -18,3 +18,18 @@ class User:
         '''
 
         User.user_list.append(self)
+
+    @classmethod
+    def find_by_user_name(cls, user_name):
+        '''
+        Method that takes in a user_name and returns a user that matches that number.
+
+        Args:
+            user_name: User_name to search for
+        Returns :
+            User of person that matches the user_name.
+        '''
+
+        for user in cls.user_list:
+            if user.user_name == user_name:
+                return user
