@@ -32,3 +32,19 @@ class Credentials:
         '''
 
         Credentials.credentials_list.remove(self)
+    
+    @classmethod
+    def credential_exist(cls, site_name):
+        '''
+        Method that checks if a credential account exists from the contact list.
+        Args:
+            site_name: Site_name to search if it exists
+        Returns :
+            Boolean: True or false depending if the credential exists
+        '''
+        for credential in cls.credentials_list:
+            if credential.site_name == site_name:
+                    return True
+
+        return False
+
