@@ -24,3 +24,11 @@ class Credentials:
         method that returns the credentials list
         '''
         return cls.credentials_list
+
+    def delete_credential(self):
+
+        '''
+        delete_credential method deletes a credentil account from the credentials_list
+        '''
+
+        Credentials.credentials_list.remove(self)
