@@ -121,7 +121,21 @@ class TestUser(unittest.TestCase):
             test_credential.save_credential()
 
             self.new_credential.delete_credential()
-            self.assertEqual(len(Credentials.credentials_list),1)   
+            self.assertEqual(len(Credentials.credentials_list),1) 
+
+    def test_credential_exists(self):
+        '''
+        test to check if we can return a Boolean  if we cannot find the credential account.
+        '''
+
+        self.new_credential.save_credential()
+        test_credential = Credentials("Test", "Jd","1234")
+        test_credential.save_credential()
+
+        credential_exists = Credentials.credential_exist("Test")
+
+        self.assertTrue(credential_exists)
+
 
 if __name__ == '__main__':
     unittest.main()
