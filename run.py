@@ -1,4 +1,5 @@
 from user import User
+from credentials import Credentials
 
 
 def create_user(uname, password):
@@ -28,6 +29,21 @@ def check_existing_users(user_name):
     Function that check if a user exists with that username and return a Boolean
     '''
     return User.user_exist(user_name)
+
+
+def create_credential(site_name, site_username, site_password):
+    '''
+    Function to create a new credential account
+    '''
+    new_credential = Credentials(site_name, site_username, site_password)
+    return new_credential
+
+
+def save_users(user):
+    '''
+    Function to save user
+    '''
+    user.save_user()
 
 
 def main():
