@@ -39,11 +39,11 @@ def create_credential(site_name, site_username, site_password):
     return new_credential
 
 
-def save_users(user):
+def save_credentials(credential):
     '''
-    Function to save user
+    Function to save credentials
     '''
-    user.save_user()
+    credential.save_credential()
 
 
 def main():
