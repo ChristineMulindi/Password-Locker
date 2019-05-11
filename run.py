@@ -53,6 +53,13 @@ def display_credentials():
     return Credentials.display_credentials()
 
 
+def del_contact(credential):
+    '''
+    Function to delete a credential account
+    '''
+    credential.delete_credential()
+
+
 
 def main():
     print("Hello Welcome to Password Locker. What is your name?")
