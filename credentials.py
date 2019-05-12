@@ -28,7 +28,7 @@ class Credentials:
     def delete_credential(self):
 
         '''
-        delete_credential method deletes a credentil account from the credentials_list
+        delete_credential method deletes a credential account from the credentials_list
         '''
 
         Credentials.credentials_list.remove(self)
@@ -52,7 +52,7 @@ class Credentials:
     @classmethod
     def credential_exist(cls, site_name):
         '''
-        Method that checks if a credential account exists from the contact list.
+        Method that checks if a credential account exists from the credential list.
         Args:
             site_name: Site_name to search if it exists
         Returns :
