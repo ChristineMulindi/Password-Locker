@@ -82,7 +82,8 @@ def main():
     print('\n')
 
     while True:
-        print("Use these short codes : cc - create a new user, li -to log in")
+        print('\n')
+        print("Use these short codes : cc - create a new user, li -to log in, ex - to exit")
 
         short_code = input().lower()
 
@@ -106,18 +107,21 @@ def main():
 
         if short_code == 'li':
             print("Login in")
+            print('\n')
             print("Enter your username")
             user_name = input()
             print("Enter your password")
             password = input()
             user_exists = check_existing_users(user_name, password)
-            print(f"Successfully logged in !!! ")
+            print('\n')
             print('\n')
             if user_exists == user_name:
             
                 while True:
                     print('\n')
-                    print("Use these short codes : ca - to create credential account, dc -to display credentials, d - delete credential account , ex -exit the contact list")
+                    print(f"Successfully logged in !!! ")
+                    print('\n')
+                    print("Use these short codes : ca - to create credential account, dc -to display credentials, d - delete credential account , ex -exit the credential account")
                     short_code = input().lower()
 
                     if short_code == 'ca':        
@@ -172,7 +176,8 @@ def main():
                         break
                     else:
                         print("I really didn't get that. Please use the short codes")
-
+            else:
+                print("Login failed wrong user credentials that is either the username or password")
 
 if __name__ == '__main__':
 
