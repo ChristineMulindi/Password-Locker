@@ -24,11 +24,12 @@ def find_user(user_name):
     return User.find_by_user_name(user_name)
 
 
-def check_existing_users(user_name):
+def check_existing_users(user_name, password):
     '''
     Function that check if a user exists with that username and return a Boolean
     '''
-    return User.user_exist(user_name)
+    user = User.user_exist(user_name, password)
+    return user
 
 
 def create_credential(site_name, site_username, site_password):
@@ -48,10 +49,22 @@ def save_credentials(credential):
 
 def display_credentials():
     '''
-    Function that returns all the saved contacts
+    Function that returns all the saved credentials
     '''
     return Credentials.display_credentials()
 
+
+def find_credential(site_name):
+    '''
+    Function that finds a creddential account by sitename and returns the credential account.
+    '''
+    return Credentials.find_by_site_name(site_name)
+
+def check_existing_credentials(site_name):
+    '''
+    Function that check if a credential account exists with that sitename and return a Boolean
+    '''
+    return Credentials.credential_exist(site_name)
 
 def del_contact(credential):
     '''
@@ -69,7 +82,7 @@ def main():
     print('\n')
 
     while True:
-        print("Use these short codes : cc - create a new user, fc -find a user, ex -exit the contact list ")
+        print("Use these short codes : cc - create a new user, li -to log in")
 
         short_code = input().lower()
 
@@ -89,24 +102,76 @@ def main():
             print('\n')
             print(f"New User {user_name} created")
             print('\n')
+            print('\n')
 
-                   
-        elif short_code == 'fc':
-            print("Enter the username you want to search for")
-            search_user_name = input()
-            if check_existing_users(search_user_name):
-                search_user_name = find_user(search_user_name)
-                print(f"{search_user_name.user_name}")
-                print('-' * 20)
+        if short_code == 'li':
+            print("Login in")
+            print("Enter your username")
+            user_name = input()
+            print("Enter your password")
+            password = input()
+            user_exists = check_existing_users(user_name, password)
+            print(f"Successfully logged in !!! ")
+            print('\n')
+            if user_exists == user_name:
+            
+                while True:
+                    print('\n')
+                    print("Use these short codes : ca - to create credential account, dc -to display credentials, d - delete credential account , ex -exit the contact list")
+                    short_code = input().lower()
 
-            else:
-                print("That contact does not exist")
+                    if short_code == 'ca':        
+                        print("New Credential Account")
+                        print("-"*10)
 
-        elif short_code == "ex":
-             print("Bye .......")
-             break
-        else:
-             print("I really didn't get that. Please use the short codes")
+                        print("Site name ....")
+                        site_name = input()
+            
+                        print("Site user name ....")
+                        site_username = input()
+
+                        print("Site Password ...")
+                        site_password = input()
+
+                        # create and save new credential account.
+                        save_credentials(create_credential(site_name, site_username, site_password))
+                        print('\n')
+                        print(f"New Credential {site_name} {site_username} {site_password}  created")
+                        print('\n')
+
+                    elif short_code == 'dc':
+                        if display_credentials():
+                            print("Here is a list of all your crenditial accounts")
+                            print('\n')
+                            for credential in display_credentials():
+                                print(f"{credential.site_name} {credential.site_username} .....{credential.site_password}")
+                                print('\n')
+                        else:
+                            print('\n')
+                            print("You dont seem to have any credentials saved yet")
+                            print('\n')
+
+
+                    elif short_code == 'd':
+                        print("Enter the credential account you want to delete")
+                        search_site_name = input()
+                        if check_existing_credentials(search_site_name):
+                            search_site_name = find_credential(search_site_name)
+                            print(
+                            f"{search_site_name.site_name} ")
+                            print('-' * 20)
+
+                            Credentials.credentials_list.remove(search_site_name)
+
+                        else:
+                            print("That credential account does not exist")
+
+
+                    elif short_code == "ex":
+                        print("Bye .......")
+                        break
+                    else:
+                        print("I really didn't get that. Please use the short codes")
 
 
 if __name__ == '__main__':
